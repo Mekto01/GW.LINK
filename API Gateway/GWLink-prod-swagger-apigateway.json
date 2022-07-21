@@ -1,0 +1,1005 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "2022-07-20T02:21:41Z",
+    "title" : "GWLink"
+  },
+  "host" : "[REDACTED].execute-api.us-east-1.amazonaws.com",
+  "basePath" : "/prod",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/announcement/addAnnouncement" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "AddAnnouncement",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AddAnnouncement"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-request-validator" : "Validate body",
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/announcement/listAnnouncements" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseTemplates" : {
+                "application/json" : "[\n   #if( $input.params('userid') == \"100\" && $input.params('status') == \"new\" )\n      {\n         \"announcementid\": \"1\",\n         \"subject\": \"Job Fair on July 20\",\n         \"dateposted\": \"7/15/2022\"\n      }\n   #elseif( $input.params('userid') == \"100\" && $input.params('status') == \"old\" )\n      {\n         \"announcementid\": \"2\",\n         \"subject\": \"Attention Summer Grads\",\n         \"dateposted\": \"7/18/2022\"\n      }\n   #else\n      {\n         \"announcementid\": \"\",\n         \"subject\": \"\",\n         \"dateposted\": \"\"\n      }\n   #end\n]"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/announcement/viewAnnouncement" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseTemplates" : {
+                "application/json" : "[\n   #if( $input.params('announcementid') == \"1\" )\n      {\n         \"announcementid\": \"1\",\n         \"subject\": \"Job Fair on July 20\",\n         \"body\": \"The GW School of Business will host a job fair on July 20.\",\n         \"dateposted\": \"7/15/2022\"\n      }\n   #elseif( $input.params('announcementid') == \"2\" )\n      {\n         \"announcementid\": \"2\",\n         \"subject\": \"Attention Summer Grads\",\n         \"body\": \"All summer grads should contact your program director asap for instructions.\",\n         \"dateposted\": \"7/18/2022\"\n      }\n   #else\n      {\n         \"announcementid\": \"\",\n         \"subject\": \"\",\n         \"body\": \"\",\n         \"dateposted\": \"\"\n      }\n   #end\n]"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/connection/addConnection" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "AddConnection",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AddConnection"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-request-validator" : "Validate body",
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/connection/listConnections" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseTemplates" : {
+                "application/json" : "[\n   #if( $input.params('userid') == \"100\" )\n      {\n         \"connected_userid\": \"101\",\n         \"firstname\": \"Manga\",\n         \"lastname\": \"Montel\"\n      },\n      {\n         \"connected_userid\": \"102\",\n         \"firstname\": \"Lika\",\n         \"lastname\": \"Greene\"\n      },\n      {\n         \"connected_userid\": \"103\",\n         \"firstname\": \"Alana\",\n         \"lastname\": \"Daniels\"\n      }\n   #elseif( $input.params('userid') == \"101\" )\n      {\n         \"connected_userid\": \"100\",\n         \"firstname\": \"George\",\n         \"lastname\": \"Washington\"\n      },\n      {\n         \"connected_userid\": \"105\",\n         \"firstname\": \"Sonny\",\n         \"lastname\": \"Dangerfield\"\n      }\n   #else\n      {\n         \"connected_userid\": \"\",\n         \"firstname\": \"\",\n         \"lastname\": \"\"\n      }\n   #end\n]"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/connection/listConnections2" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:[REDACTED]:function:GWLink_listConnections/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/connection/listPendingConnections" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseTemplates" : {
+                "application/json" : "[\n   #if( $input.params('userid') == \"100\" )\n      {\n         \"connected_userid\": \"104\",\n         \"firstname\": \"Lorenzo\",\n         \"lastname\": \"Tompson\"\n      }\n   #elseif( $input.params('userid') == \"101\" )\n      {\n         \"connected_userid\": \"102\",\n         \"firstname\": \"Lika\",\n         \"lastname\": \"Greene\"\n      },\n      {\n         \"connected_userid\": \"103\",\n         \"firstname\": \"Alana\",\n         \"lastname\": \"Daniels\"\n      }\n   #else\n      {\n         \"connected_userid\": \"\",\n         \"firstname\": \"\",\n         \"lastname\": \"\"\n      }\n   #end\n]"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/connection/listPendingConnections2" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "userid",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-request-validator" : "Validate query string parameters and headers",
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:[REDACTED]:function:GWLink_listPendingConns/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\n     \"userid\": \"$input.params('userid')\"\n}"
+          },
+          "passthroughBehavior" : "when_no_templates",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/connection/removeConnection" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "RemoveConnection",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/RemoveConnection"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-request-validator" : "Validate body",
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/connection/searchConnections" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseTemplates" : {
+                "application/json" : "[\n   #if( $input.params('userid') == \"100\" && $input.params('lastname') == \"Dangerfield\" )\n      {\n         \"connected_userid\": \"105\",\n         \"firstname\": \"Sonny\",\n         \"lastname\": \"Dangerfield\"\n      }\n   #elseif( $input.params('userid') == \"101\" && $input.params('lastname') == \"Tompson\" )\n      {\n         \"connected_userid\": \"104\",\n         \"firstname\": \"Lorenzo\",\n         \"lastname\": \"Tompson\"\n      }\n   #else\n      {\n         \"connected_userid\": \"\",\n         \"firstname\": \"\",\n         \"lastname\": \"\"\n      }\n   #end\n]"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/login" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseTemplates" : {
+                "application/json" : "[\n   #if( $input.params('username') == \"gwashington@email.com\" && $input.params('password') == \"DBBE0B9E0FFEF386CBF307107379782883C0C50B\" )\n      {\n         \"userid\": \"100\",\n         \"firstname\": \"George\",\n         \"lastname\": \"Washington\",\n         \"username\": \"gwashington@email.com\",\n         \"status\": \"active\"\n      }\n   #elseif( $input.params('username') == \"manga@email.com\" && $input.params('password') == \"DBBE0B9E0FFEF386CBF307107379782883C0C50B\" )\n      {\n         \"userid\": \"101\",\n         \"firstname\": \"Manga\",\n         \"lastname\": \"Montel\",\n         \"username\": \"manga@email.com\",\n         \"status\": \"active\"\n      }\n   #elseif( $input.params('username') == \"lgreene@email.com\" && $input.params('password') == \"DBBE0B9E0FFEF386CBF307107379782883C0C50B\" )\n      {\n         \"userid\": \"102\",\n         \"firstname\": \"Lika\",\n         \"lastname\": \"Greene\",\n         \"username\": \"lgreene@email.com\",\n         \"status\": \"active\"\n      }\n   #elseif( $input.params('username') == \"alana_daniels@email.com\" && $input.params('password') == \"DBBE0B9E0FFEF386CBF307107379782883C0C50B\" )\n      {\n         \"userid\": \"103\",\n         \"firstname\": \"Alana\",\n         \"lastname\": \"Daniels\",\n         \"username\": \"alana_daniels@email.com\",\n         \"status\": \"active\"\n      }\n   #elseif( $input.params('username') == \"ltompson@email.com\" && $input.params('password') == \"DBBE0B9E0FFEF386CBF307107379782883C0C50B\" )\n      {\n         \"userid\": \"104\",\n         \"firstname\": \"Lorenzo\",\n         \"lastname\": \"Tompson\",\n         \"username\": \"ltompson@email.com\",\n         \"status\": \"active\"\n      }\n   #elseif( $input.params('username') == \"dangerfield@email.com\" && $input.params('password') == \"DBBE0B9E0FFEF386CBF307107379782883C0C50B\" )\n      {\n         \"userid\": \"105\",\n         \"firstname\": \"Sonny\",\n         \"lastname\": \"Dangerfield\",\n         \"username\": \"dangerfield@email.com\",\n         \"status\": \"active\"\n      }\n   #else\n      {\n         \"userid\": \"\",\n         \"firstname\": \"\",\n         \"lastname\": \"\",\n         \"username\": \"\",\n         \"status\": \"\"\n      }\n   #end\n]"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/message/addMessage" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "AddMessage",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AddMessage"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-request-validator" : "Validate body",
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/message/listMessages" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseTemplates" : {
+                "application/json" : "[\n   #if( $input.params('userid') == \"100\" && $input.params('messagetype') == \"new\" )\n      {\n         \"messageid\": \"3\",\n         \"from\": \"Manga Montel\",\n         \"subject\": \"Burndown chart\",\n         \"dateadded\": \"7/14/2022\",\n         \"dateread\": \"\"\n      },\n      {\n         \"messageid\": \"4\",\n         \"from\": \"Lika Greene\",\n         \"subject\": \"Final deliverable\",\n         \"dateadded\": \"7/14/2022\",\n         \"dateread\": \"\"\n      }\n   #elseif( $input.params('userid') == \"100\" && $input.params('messagetype') == \"old\" )\n      {\n         \"messageid\": \"1\",\n         \"from\": \"Alana Daniels\",\n         \"subject\": \"Code repo on GitHub\",\n         \"dateadded\": \"7/10/2022\",\n         \"dateread\": \"7/11/2022\"\n      },\n      {\n         \"messageid\": \"2\",\n         \"from\": \"Sonny Dangerfield\",\n         \"subject\": \"Your final grade\",\n         \"dateadded\": \"7/13/2022\",\n         \"dateread\": \"7/13/2022\"\n      }\n   #else\n      {\n         \"messageid\": \"\",\n         \"from\": \"\",\n         \"subject\": \"\",\n         \"dateadded\": \"\",\n         \"dateread\": \"\"\n      }\n   #end\n]"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/message/viewMessage" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseTemplates" : {
+                "application/json" : "[\n   #if( $input.params('messageid') == \"1\" )\n      {\n         \"messageid\": \"1\",\n         \"from\": \"Alana Daniels\",\n         \"subject\": \"Code repo on GitHub\",\n         \"body\": \"blah, blah, blah\",\n         \"dateadded\": \"7/10/2022\",\n         \"dateread\": \"7/11/2022\"\n      }\n   #elseif( $input.params('messageid') == \"2\" )\n      {\n         \"messageid\": \"2\",\n         \"from\": \"Sonny Dangerfield\",\n         \"subject\": \"Your final grade\",\n         \"body\": \"blah, blah, blah\",\n         \"dateadded\": \"7/13/2022\",\n         \"dateread\": \"7/13/2022\"\n      }\n   #elseif( $input.params('messageid') == \"3\" )\n      {\n         \"messageid\": \"3\",\n         \"from\": \"Manga Montel\",\n         \"subject\": \"Burndown chart\",\n         \"body\": \"blah, blah, blah\",\n         \"dateadded\": \"7/14/2022\",\n         \"dateread\": \"\"\n      }\n   #elseif( $input.params('messageid') == \"4\" )\n      {\n         \"messageid\": \"4\",\n         \"from\": \"Lika Greene\",\n         \"subject\": \"Final deliverable\",\n         \"body\": \"blah, blah, blah\",\n         \"dateadded\": \"7/14/2022\",\n         \"dateread\": \"\"\n      }\n   #else\n      {\n         \"messageid\": \"\",\n         \"from\": \"\",\n         \"subject\": \"\",\n         \"body\": \"\",\n         \"dateadded\": \"\",\n         \"dateread\": \"\"\n      }\n   #end\n]"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/note/addNote" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "AddNote",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AddNote"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-request-validator" : "Validate body",
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/note/editNote" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "EditNote",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/EditNote"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-request-validator" : "Validate body",
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/note/removeNote" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "RemoveNote",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/RemoveNote"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-request-validator" : "Validate body",
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/note/viewNote" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseTemplates" : {
+                "application/json" : "[\n   #if( $input.params('userid') == \"100\" && $input.params('recipientid') == \"101\" )\n      {\n         \"recipientid\": \"101\",\n         \"note\": \"Manga is a great partner.\"\n      }\n   #elseif( $input.params('userid') == \"100\" && $input.params('recipientid') == \"102\" )\n      {\n         \"recipientid\": \"102\",\n         \"note\": \"Lika is fantastic to work with.\"\n      }\n   #elseif( $input.params('userid') == \"100\" && $input.params('recipientid') == \"103\" )\n      {\n         \"recipientid\": \"103\",\n         \"note\": \"Alana is a wonderful team member.\"\n      }\n   #else\n      {\n         \"recipientid\": \"\",\n         \"note\": \"\"\n      }\n   #end\n]"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/profile/updateProfile" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "UpdateProfile",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateProfile"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-request-validator" : "Validate body",
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/profile/viewProfile" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseTemplates" : {
+                "application/json" : "[\n   #if( $input.params('userid') == \"100\" )\n      {\n         \"userid\": \"100\",\n         \"firstname\": \"George\",\n         \"lastname\": \"Washington\",\n         \"email\": \"george.washington@gmail.com\",\n         \"homestate\": \"Virginia\",\n         \"birthday\": \"February 22\",\n         \"gender\": \"Male\",\n         \"currentlocation\": \"Thurston Hall\",\n         \"skills\": \"Java, Python, SQL, HTML, CSS, JavaScript\",\n         \"telephone\": \"202-994-0001\",\n         \"school\": \"School of Business\",\n         \"program\": \"MSIST\",\n         \"gradyear\": \"2022\",\n         \"userrole\": \"Alum\",\n         \"socialprofiles\": \"https://in.linkedin.com/in/george-washington\",\n         \"bio\": \"George Washington was an American military officer, statesman, and Founding Father who served as the first president of the United States from 1789 to 1797.\",\n         \"resume\": \"gwashington.pdf\",\n         \"profilephoto\": \"gwashington.jpg\"\n      }\n   #elseif( $input.params('userid') == \"101\" )\n      {\n         \"userid\": \"101\",\n         \"firstname\": \"Manga\",\n         \"lastname\": \"Montel\",\n         \"email\": \"manga@email.com\",\n         \"homestate\": \"\",\n         \"birthday\": \"\",\n         \"gender\": \"\",\n         \"currentlocation\": \"\",\n         \"skills\": \"\",\n         \"telephone\": \"\",\n         \"school\": \"\",\n         \"program\": \"\",\n         \"gradyear\": \"\",\n         \"userrole\": \"\",\n         \"socialprofiles\": \"\",\n         \"bio\": \"\",\n         \"resume\": \"\",\n         \"profilephoto\": \"\"\n      }\n   #elseif( $input.params('userid') == \"102\" )\n      {\n         \"userid\": \"102\",\n         \"firstname\": \"Lika\",\n         \"lastname\": \"Greene\",\n         \"email\": \"lgreene@email.com\",\n         \"homestate\": \"\",\n         \"birthday\": \"\",\n         \"gender\": \"\",\n         \"currentlocation\": \"\",\n         \"skills\": \"\",\n         \"telephone\": \"\",\n         \"school\": \"\",\n         \"program\": \"\",\n         \"gradyear\": \"\",\n         \"userrole\": \"\",\n         \"socialprofiles\": \"\",\n         \"bio\": \"\",\n         \"resume\": \"\",\n         \"profilephoto\": \"\"\n      }\n   #elseif( $input.params('userid') == \"103\" )\n      {\n         \"userid\": \"103\",\n         \"firstname\": \"Alana\",\n         \"lastname\": \"Daniels\",\n         \"email\": \"alana_daniels@email.com\",\n         \"homestate\": \"\",\n         \"birthday\": \"\",\n         \"gender\": \"\",\n         \"currentlocation\": \"\",\n         \"skills\": \"\",\n         \"telephone\": \"\",\n         \"school\": \"\",\n         \"program\": \"\",\n         \"gradyear\": \"\",\n         \"userrole\": \"\",\n         \"socialprofiles\": \"\",\n         \"bio\": \"\",\n         \"resume\": \"\",\n         \"profilephoto\": \"\"\n      }\n   #elseif( $input.params('userid') == \"104\" )\n      {\n         \"userid\": \"104\",\n         \"firstname\": \"Lorenzo\",\n         \"lastname\": \"Tompson\",\n         \"email\": \"ltompson@email.com\",\n         \"homestate\": \"\",\n         \"birthday\": \"\",\n         \"gender\": \"\",\n         \"currentlocation\": \"\",\n         \"skills\": \"\",\n         \"telephone\": \"\",\n         \"school\": \"\",\n         \"program\": \"\",\n         \"gradyear\": \"\",\n         \"userrole\": \"\",\n         \"socialprofiles\": \"\",\n         \"bio\": \"\",\n         \"resume\": \"\",\n         \"profilephoto\": \"\"\n      }\n   #elseif( $input.params('userid') == \"105\" )\n      {\n         \"userid\": \"105\",\n         \"firstname\": \"Sonny\",\n         \"lastname\": \"Dangerfield\",\n         \"email\": \"dangerfield@email.com\",\n         \"homestate\": \"\",\n         \"birthday\": \"\",\n         \"gender\": \"\",\n         \"currentlocation\": \"\",\n         \"skills\": \"\",\n         \"telephone\": \"\",\n         \"school\": \"\",\n         \"program\": \"\",\n         \"gradyear\": \"\",\n         \"userrole\": \"\",\n         \"socialprofiles\": \"\",\n         \"bio\": \"\",\n         \"resume\": \"\",\n         \"profilephoto\": \"\"\n      }\n   #else\n      {\n         \"userid\": \"\",\n         \"firstname\": \"\",\n         \"lastname\": \"\",\n         \"email\": \"\",\n         \"homestate\": \"\",\n         \"birthday\": \"\",\n         \"gender\": \"\",\n         \"currentlocation\": \"\",\n         \"skills\": \"\",\n         \"telephone\": \"\",\n         \"school\": \"\",\n         \"program\": \"\",\n         \"gradyear\": \"\",\n         \"userrole\": \"\",\n         \"socialprofiles\": \"\",\n         \"bio\": \"\",\n         \"resume\": \"\",\n         \"profilephoto\": \"\"\n      }\n   #end\n]"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/profile/viewProfile2" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:[REDACTED]:function:GWLink_viewProfile/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/register" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "register",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/register"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-request-validator" : "Validate body",
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/search" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseTemplates" : {
+                "application/json" : "[\n   #if( $input.params('username') == \"gwashington@email.com\" || $input.params('firstname') == \"George\" || $input.params('lastname') == \"Washington\" )\n      {\n         \"userid\": \"100\",\n         \"firstname\": \"George\",\n         \"lastname\": \"Washington\",\n         \"username\": \"gwashington@email.com\",\n         \"status\": \"active\"\n      }\n   #elseif( $input.params('username') == \"manga@email.com\" || $input.params('firstname') == \"Manga\" || $input.params('lastname') == \"Montel\" )\n      {\n         \"userid\": \"101\",\n         \"firstname\": \"Manga\",\n         \"lastname\": \"Montel\",\n         \"username\": \"manga@email.com\",\n         \"status\": \"active\"\n      }\n   #elseif( $input.params('username') == \"lgreene@email.com\" || $input.params('firstname') == \"Lika\" || $input.params('lastname') == \"Greene\" )\n      {\n         \"userid\": \"102\",\n         \"firstname\": \"Lika\",\n         \"lastname\": \"Greene\",\n         \"username\": \"lgreene@email.com\",\n         \"status\": \"active\"\n      }\n   #elseif( $input.params('username') == \"alana_daniels@email.com\" || $input.params('firstname') == \"Alana\" || $input.params('lastname') == \"Daniels\" )\n      {\n         \"userid\": \"103\",\n         \"firstname\": \"Alana\",\n         \"lastname\": \"Daniels\",\n         \"username\": \"alana_daniels@email.com\",\n         \"status\": \"active\"\n      }\n   #elseif( $input.params('username') == \"ltompson@email.com\" || $input.params('firstname') == \"Lorenzo\" || $input.params('lastname') == \"Tompson\" )\n      {\n         \"userid\": \"104\",\n         \"firstname\": \"Lorenzo\",\n         \"lastname\": \"Tompson\",\n         \"username\": \"ltompson@email.com\",\n         \"status\": \"active\"\n      }\n   #elseif( $input.params('username') == \"dangerfield@email.com\" || $input.params('firstname') == \"Sonny\" || $input.params('lastname') == \"Dangerfield\" )\n      {\n         \"userid\": \"105\",\n         \"firstname\": \"Sonny\",\n         \"lastname\": \"Dangerfield\",\n         \"username\": \"dangerfield@email.com\",\n         \"status\": \"active\"\n      }\n   #else\n      {\n         \"userid\": \"\",\n         \"firstname\": \"\",\n         \"lastname\": \"\",\n         \"username\": \"\",\n         \"status\": \"\"\n      }\n   #end\n]"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    },
+    "/users" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            },
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseParameters" : {
+                "method.response.header.Access-Control-Allow-Origin" : "'*'"
+              },
+              "responseTemplates" : {
+                "application/json" : "[\n   #if( $input.params('username') == \"gwashington@email.com\" || $input.params('firstname') == \"George\" || $input.params('lastname') == \"Washington\" )\n      {\n         \"userid_str\": \"100\",\n         \"firstname_str\": \"George\",\n         \"lastname_str\": \"Washington\",\n         \"username_str\": \"gwashington@email.com\",\n         \"status_str\": \"active\"\n      }\n   #elseif( $input.params('username') == \"manga@email.com\" || $input.params('firstname') == \"Manga\" || $input.params('lastname') == \"Montel\" )\n      {\n         \"userid_str\": \"101\",\n         \"firstname_str\": \"Manga\",\n         \"lastname_str\": \"Montel\",\n         \"username_str\": \"manga@email.com\",\n         \"status_str\": \"active\"\n      }\n   #elseif( $input.params('username') == \"lgreene@email.com\" || $input.params('firstname') == \"Lika\" || $input.params('lastname') == \"Greene\" )\n      {\n         \"userid_str\": \"102\",\n         \"firstname_str\": \"Lika\",\n         \"lastname_str\": \"Greene\",\n         \"username_str\": \"lgreene@email.com\",\n         \"status_str\": \"active\"\n      }\n   #elseif( $input.params('username') == \"alana_daniels@email.com\" || $input.params('firstname') == \"Alana\" || $input.params('lastname') == \"Daniels\" )\n      {\n         \"userid_str\": \"103\",\n         \"firstname_str\": \"Alana\",\n         \"lastname_str\": \"Daniels\",\n         \"username_str\": \"alana_daniels@email.com\",\n         \"status_str\": \"active\"\n      }\n   #elseif( $input.params('username') == \"ltompson@email.com\" || $input.params('firstname') == \"Lorenzo\" || $input.params('lastname') == \"Tompson\" )\n      {\n         \"userid_str\": \"104\",\n         \"firstname_str\": \"Lorenzo\",\n         \"lastname_str\": \"Tompson\",\n         \"username_str\": \"ltompson@email.com\",\n         \"status_str\": \"active\"\n      }\n   #elseif( $input.params('username') == \"dangerfield@email.com\" || $input.params('firstname') == \"Sonny\" || $input.params('lastname') == \"Dangerfield\" )\n      {\n         \"userid_str\": \"105\",\n         \"firstname_str\": \"Sonny\",\n         \"lastname_str\": \"Dangerfield\",\n         \"username_str\": \"dangerfield@email.com\",\n         \"status_str\": \"active\"\n      }\n   #elseif( $input.params('username') == \"_all\" )\n      {\n         \"userid_str\": \"100\",\n         \"firstname_str\": \"George\",\n         \"lastname_str\": \"Washington\",\n         \"username_str\": \"gwashington@email.com\",\n         \"status_str\": \"active\"\n      },\n      {\n         \"userid_str\": \"101\",\n         \"firstname_str\": \"Manga\",\n         \"lastname_str\": \"Montel\",\n         \"username_str\": \"manga@email.com\",\n         \"status_str\": \"active\"\n      },\n      {\n         \"userid_str\": \"102\",\n         \"firstname_str\": \"Lika\",\n         \"lastname_str\": \"Greene\",\n         \"username_str\": \"lgreene@email.com\",\n         \"status_str\": \"active\"\n      },\n      {\n         \"userid_str\": \"103\",\n         \"firstname_str\": \"Alana\",\n         \"lastname_str\": \"Daniels\",\n         \"username_str\": \"alana_daniels@email.com\",\n         \"status_str\": \"active\"\n      },\n      {\n         \"userid_str\": \"104\",\n         \"firstname_str\": \"Lorenzo\",\n         \"lastname_str\": \"Tompson\",\n         \"username_str\": \"ltompson@email.com\",\n         \"status_str\": \"active\"\n      },\n      {\n         \"userid_str\": \"105\",\n         \"firstname_str\": \"Sonny\",\n         \"lastname_str\": \"Dangerfield\",\n         \"username_str\": \"dangerfield@email.com\",\n         \"status_str\": \"active\"\n      }\n   #else\n      {\n         \"userid_str\": \"\",\n         \"firstname_str\": \"\",\n         \"lastname_str\": \"\",\n         \"username_str\": \"\",\n         \"status_str\": \"\"\n      }\n   #end\n]"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      },
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            },
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "mock",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseParameters" : {
+                "method.response.header.Access-Control-Allow-Methods" : "'GET,OPTIONS,POST'",
+                "method.response.header.Access-Control-Allow-Headers" : "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                "method.response.header.Access-Control-Allow-Origin" : "'*'"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match"
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "AddAnnouncement" : {
+      "type" : "object",
+      "properties" : {
+        "userid" : {
+          "type" : "string"
+        },
+        "subject" : {
+          "type" : "string"
+        },
+        "body" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      },
+      "title" : "addAnnouncement"
+    },
+    "Empty" : {
+      "type" : "object",
+      "title" : "Empty Schema"
+    },
+    "UpdateProfile" : {
+      "type" : "object",
+      "properties" : {
+        "userid" : {
+          "type" : "string"
+        },
+        "firstname" : {
+          "type" : "string"
+        },
+        "lastname" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "homestate" : {
+          "type" : "string"
+        },
+        "birthday" : {
+          "type" : "string"
+        },
+        "gender" : {
+          "type" : "string"
+        },
+        "currentlocation" : {
+          "type" : "string"
+        },
+        "skills" : {
+          "type" : "string"
+        },
+        "telephone" : {
+          "type" : "string"
+        },
+        "school" : {
+          "type" : "string"
+        },
+        "program" : {
+          "type" : "string"
+        },
+        "gradyear" : {
+          "type" : "string"
+        },
+        "userrole" : {
+          "type" : "string"
+        },
+        "socialprofiles" : {
+          "type" : "string"
+        },
+        "bio" : {
+          "type" : "string"
+        }
+      },
+      "title" : "UpdateProfile"
+    },
+    "EditNote" : {
+      "type" : "object",
+      "properties" : {
+        "userid" : {
+          "type" : "string"
+        },
+        "recipientid" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        }
+      },
+      "title" : "EditNote"
+    },
+    "RemoveConnection" : {
+      "type" : "object",
+      "properties" : {
+        "userid" : {
+          "type" : "string"
+        },
+        "connectionid" : {
+          "type" : "string"
+        }
+      },
+      "title" : "RemoveConnection"
+    },
+    "AddConnection" : {
+      "type" : "object",
+      "properties" : {
+        "userid" : {
+          "type" : "string"
+        },
+        "recipientid" : {
+          "type" : "string"
+        },
+        "connectionid" : {
+          "type" : "string"
+        },
+        "action" : {
+          "type" : "string"
+        }
+      },
+      "title" : "AddConnection"
+    },
+    "AddMessage" : {
+      "type" : "object",
+      "properties" : {
+        "userid" : {
+          "type" : "string"
+        },
+        "recipientid" : {
+          "type" : "string"
+        },
+        "subject" : {
+          "type" : "string"
+        },
+        "body" : {
+          "type" : "string"
+        }
+      },
+      "title" : "AddMessage"
+    },
+    "AddNote" : {
+      "type" : "object",
+      "properties" : {
+        "userid" : {
+          "type" : "string"
+        },
+        "recipientid" : {
+          "type" : "string"
+        },
+        "note" : {
+          "type" : "string"
+        }
+      },
+      "title" : "AddNote"
+    },
+    "RemoveNote" : {
+      "type" : "object",
+      "properties" : {
+        "userid" : {
+          "type" : "string"
+        },
+        "noteid" : {
+          "type" : "string"
+        }
+      },
+      "title" : "RemoveNote"
+    },
+    "register" : {
+      "type" : "object",
+      "properties" : {
+        "username" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "firstname" : {
+          "type" : "string"
+        },
+        "lastname" : {
+          "type" : "string"
+        }
+      },
+      "title" : "Register"
+    }
+  },
+  "x-amazon-apigateway-request-validators" : {
+    "Validate body" : {
+      "validateRequestParameters" : false,
+      "validateRequestBody" : true
+    },
+    "Validate query string parameters and headers" : {
+      "validateRequestParameters" : true,
+      "validateRequestBody" : false
+    }
+  }
+}
