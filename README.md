@@ -10,7 +10,7 @@ AWS services used are:
 - Lambda
 - Secrets Manager
 - IAM
--CloudWatch
+- CloudWatch
 
 Included in the repo are:
 1) An exported Swagger file in JSON format describing the API Gateway.  This includes the redacted references to live Lambda endpoints and mock endpoints with VTL code to provide interactivity.  This was so we could start working with the mock API endpoints and develop the frontend code and backend code in parallel.
