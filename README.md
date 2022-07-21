@@ -1,7 +1,7 @@
 # GW.LINK
 Capstone Project BE
 
-This repo includes the backend code use in our MSIST capstone project.  The GW.Link system is a React web application backed by an AWS serverless backend.
+This repo includes sample backend code used in our MSIST capstone project.  The GW.Link system is a React web application backed by an AWS serverless backend.
 
 AWS services used are:
 - Amazon S3
